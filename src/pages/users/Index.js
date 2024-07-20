@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import ListUsers from "../../components/users/List";
 
 const IndexUsers = () => {
 
@@ -23,13 +24,11 @@ const IndexUsers = () => {
     },[])
     
     return(
-        <div>
-        <h1>users</h1>
+        <div style={{padding: 2 + 'em'}}>
+        <h1>users:</h1>
         {loading && <div className="spinner-border"></div>}
         {error && <div>{error}</div>}
-        {users && users.map(user => {
-            return <h3 key={user.id}>{user.name}</h3>
-        })}
+        {users && <ListUsers users={users} />}
         </div>
     );
 }
