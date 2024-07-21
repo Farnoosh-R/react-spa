@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import ListPosts from "../../components/posts/List";
+import { Link } from "react-router-dom";
+
 
 const IndexPosts = () => {
 
@@ -26,6 +28,9 @@ const IndexPosts = () => {
     return(
         <div style={{padding: 2 + 'em'}}>
         <h1>posts:</h1>
+        <div>
+           <Link to="/posts/creat"><button className="btn btn-primary my-3">Creat</button></Link>
+        </div>
         {loading && <div className="spinner-border"></div>}
         {error && <div>{error}</div>}
         {posts && <ListPosts posts={posts} />}

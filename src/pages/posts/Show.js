@@ -2,20 +2,20 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 
-const ShowUser = () => {
+const ShowPost = () => {
     
-    const {userid} = useParams();
-    const [user, setUser] = useState(null);
+    const {postid} = useParams();
+    const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
     
     useEffect(() => {
 
-        fetch(`https://jsonplaceholder.typicode.com/users/${userid}`)
+        fetch(`https://jsonplaceholder.typicode.com/posts/${postid}`)
         .then(res => res.json())
         .then(data => {
-            setUser(data);
+            setPost(data);
             console.log(data)
             setLoading(false);
             setError(null)
@@ -24,7 +24,7 @@ const ShowUser = () => {
             setLoading(false)
         })
         
-    },[userid])
+    },[postid])
 
 
 
@@ -32,19 +32,17 @@ const ShowUser = () => {
         <div>
         {loading && <div className="spinner-border"></div>}
         {error && <div>{error}</div>}
-        {user && <div className="col-md-4" key={user.id} style={{padding: 2 + 'em'}}>
+        {post && <div className="col-md-4" key={post.id} style={{padding: 2 + 'em'}}>
         <div className="card">
         <div className="card-header fw-bold">
-        <span>{user.name}</span>
+        <span>{post.title}</span>
         </div>
-        <ul className="list-group list-group-flush">
-          <li className="list-group-item">userName: {user.username}</li>
-          <li className="list-group-item">Email: {user.email}</li>
-          <li className="list-group-item">Phone: {user.phone}</li>
-        </ul>
+        <div className="card-body">
+        {post.body}
+        </div>
       </div>
       </div>}
         </div>
     )
 }
-export default ShowUser;
+export default ShowPost;
