@@ -4,9 +4,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import Home from "./pages/Home";
 import bootstrap from "bootstrap/dist/css/bootstrap.min.css";
-import IndexUsers from "./pages/users/Index";
-import ShowUser from "./pages/users/Show";
 import RouterUsers from "./pages/users/Router";
+import RouterPosts from "./pages/posts/Router";
 
 
 
@@ -18,6 +17,7 @@ function App() {
     <Routes>
     <Route path="/" element={<Home />}></Route>
     <Route path="/users/*" element={<RouterUsers />}></Route>
+    <Route path="/posts/*" element={<RouterPosts />}></Route>
     </Routes>
     </BrowserRouter>
   );
