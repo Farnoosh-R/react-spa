@@ -1,9 +1,10 @@
-import React from "react";
-import { Link, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
+import EditFormPost from "../../components/posts/EditFormPost";
+import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
-const ShowPost = () => {
-    
+const EditPost = () => {
+
     const {postid} = useParams();
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
@@ -26,26 +27,13 @@ const ShowPost = () => {
         
     },[postid])
 
-
-
     return(
         <div>
+        <h3>Edit Post</h3>
         {loading && <div className="spinner-border"></div>}
         {error && <div>{error}</div>}
-        {post && <div className="col-md-4" key={post.id} style={{padding: 2 + 'em'}}>
-        <div className="card">
-        <div className="card-header fw-bold">
-        <span>{post.title}</span>
-        </div>
-        <div className="card-body">
-        {post.body}
-        </div>
-        <div className="card-footer">
-        <Link className="btn btn-dark" to={`/posts/edit/${postid}`}>Edit</Link>
-        </div>
-      </div>
-      </div>}
+        {post && <EditFormPost post={post} />}
         </div>
     )
 }
-export default ShowPost;
+export default EditPost
